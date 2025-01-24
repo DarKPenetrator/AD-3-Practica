@@ -1,0 +1,778 @@
+{
+	"info": {
+		"_postman_id": "30c8ac97-968b-4a13-af48-0b71361ea588",
+		"name": "AD Practica 3",
+		"description": "#### **Resumen:**\n\nA continuacion se resumen de forma breve que se puede encontrar en cada carpeta y los test que se realizan en ellas.\n<br>\n\n\n#### **NOTA:**\n\n- Los test de `delete` estan hechos de tal forma que requieren que se inicien los test de `post` antes, para asi mostrar su relacion y si se elimina la oferta por ende se eliminan todas sus candidaturas.\n    \n- Los test de `put` actualizan datos que se muestran en los test `get`.\n    \n\n### Carpeta **GET**\n\n1. **GET** `/api/alumnos` - Todos los alumnos.\n    \n2. **GET** `/api/alumnos/{id}` - Alumno por ID.\n    \n3. **GET** `/api/alumnos/tutor/{tutor_id}` - Alumnos con un tutor específico.\n    \n4. **GET** `/api/empresas` - Todas las empresas.\n    \n5. **GET** `/api/empresas/{id}` - Empresa por ID.\n    \n6. **GET** `/api/ofertas_practicas` - Todas las ofertas.\n    \n7. **GET** `/api/ofertas_practicas/{id}` - Oferta por ID.\n    \n8. **GET** `/api/candidaturas/oferta/{oferta_id}` - Candidaturas de una oferta.\n    \n\n### Carpeta **POST**\n\n1. **POST** `/api/alumno-usuario` - Crear User (role=alumno) + Alumno.\n    \n2. **POST** `/api/empresa-usuario` - Crear User (role=empresa) + Empresa.\n    \n3. **POST** `/api/ofertas_practicas` - Crear oferta.\n    \n4. **POST** `/api/candidaturas` - Crear candidatura 1.\n    \n5. **POST** `/api/candidaturas` - Crear candidatura 2.\n    \n\n### Carpeta **DELETE**\n\n1. **DELETE** `/api/candidaturas/{id}` - Eliminar candidatura.\n    \n2. **DELETE** `/api/ofertas_practicas/{id}` - Eliminar oferta (y candidaturas asociadas).\n    \n\n### Carpeta **PUT**\n\n1. **PUT** `/api/alumnos/{id}` - Actualizar alumno.\n    \n2. **PUT** `/api/empresas/{id}` - Actualizar empresa.\n    \n3. **PUT** `/api/ofertas_practicas/{id}` - Actualizar oferta.\n    \n4. **PUT** `/api/candidaturas/{id}` - Actualizar candidatura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41010051"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Alumno Todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>ID</th>\r",
+									"        <th>User ID</th>\r",
+									"        <th>Educational Center ID</th>\r",
+									"        <th>Career</th>\r",
+									"        <th>Graduation Year</th>\r",
+									"        <th>Phone</th>\r",
+									"        <th>Created At</th>\r",
+									"        <th>Updated At</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}}\r",
+									"        <tr>\r",
+									"            <td>{{id}}</td>\r",
+									"            <td>{{user_id}}</td>\r",
+									"            <td>{{centro_educativo_id}}</td>\r",
+									"            <td>{{carrera}}</td>\r",
+									"            <td>{{año_graduacion}}</td>\r",
+									"            <td>{{telefono}}</td>\r",
+									"            <td>{{created_at}}</td>\r",
+									"            <td>{{updated_at}}</td>\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.json()}\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/alumnos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"alumnos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alumno Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/alumnos/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"alumnos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alumno Tutor 1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/alumnos/tutor/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"alumnos",
+								"tutor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresa Todas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/empresas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresa Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/empresas/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"empresas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Oferta Todas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/ofertas_practicas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas_practicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Oferta Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/ofertas_practicas/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas_practicas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidatura Id_oferta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidaturas/oferta/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidaturas",
+								"oferta",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Alumno/User Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Pepito\",\r\n  \"email\": \"pepito@example.com\",\r\n  \"password\": \"123456\",\r\n  \"centro_educativo_id\": 1,\r\n  \"carrera\": \"Ingeniería de Software\",\r\n  \"año_graduacion\": 2027,\r\n  \"telefono\": \"600555777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/alumno-usuario",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"alumno-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresa/User Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Empresa Nueva\",\r\n  \"email\": \"empresa.nueva@example.com\",\r\n  \"password\": \"secretPassword\",\r\n  \"direccion\": \"Calle Progreso, 55\",\r\n  \"telefono\": \"910222333\",\r\n  \"sector\": \"Automoción\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/empresa-usuario",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"empresa-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Oferta Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"empresa_id\": 1,\r\n  \"puesto\": \"Becario Frontend\",\r\n  \"duracion\": 4,\r\n  \"requisitos\": \"Conocimientos básicos de HTML, CSS, JS\",\r\n  \"descripcion\": \"Trabajar en el equipo de desarrollo web...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/ofertas_practicas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas_practicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidatura Create 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"alumno_id\": 5,\r\n  \"oferta_de_practica_id\": 5,\r\n  \"tutor_id\": 2,\r\n  \"estado\": \"pendiente\",\r\n  \"comentarios\": \"NO Me gustaría poder hacer las prácticas bla bla bla bla\",\r\n  \"fecha_candidatura\": \"2025-02-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidaturas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidaturas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidatura Create 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"alumno_id\": 2,\r\n  \"oferta_de_practica_id\": 5,\r\n  \"tutor_id\": 2,\r\n  \"estado\": \"pendiente\",\r\n  \"comentarios\": \"Me gustaría poder hacer las prácticas bla bla bla bla\",\r\n  \"fecha_candidatura\": \"2025-02-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidaturas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidaturas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "Candidatura Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Pepito\",\r\n  \"email\": \"pepito@example.com\",\r\n  \"password\": \"123456\",\r\n  \"centro_educativo_id\": 1,\r\n  \"carrera\": \"Ingeniería de Software\",\r\n  \"año_graduacion\": 2027,\r\n  \"telefono\": \"600555777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidaturas/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidaturas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Oferta Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Pepito\",\r\n  \"email\": \"pepito@example.com\",\r\n  \"password\": \"123456\",\r\n  \"centro_educativo_id\": 1,\r\n  \"carrera\": \"Ingeniería de Software\",\r\n  \"año_graduacion\": 2027,\r\n  \"telefono\": \"600555777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/ofertas_practicas/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas_practicas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "Alumno Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"carrera\": \"Ingeniería Multimedia\",\r\n  \"telefono\": \"600123999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/alumnos/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"alumnos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresa Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"direccion\": \"Avenida Actualizada, 77\",\r\n  \"telefono\": \"612345678\",\r\n  \"sector\": \"Energías Renovables\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/empresas/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"empresas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Oferta Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"puesto\": \"Becario Full-Stack\",\r\n  \"duracion\": 6,\r\n  \"requisitos\": \"Node, PHP, React\",\r\n  \"descripcion\": \"Proyecto web integral...\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/ofertas_practicas/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas_practicas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidatura Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tutor_id\": 1,\r\n  \"estado\": \"aceptada\",\r\n  \"comentarios\": \"El alumno ha pasado con éxito las pruebas\",\r\n  \"fecha_candidatura\": \"2025-02-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidaturas/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidaturas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
