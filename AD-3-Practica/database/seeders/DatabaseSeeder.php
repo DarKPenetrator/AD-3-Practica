@@ -2,22 +2,29 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
+        // Importante el orden:
+        // 1) Users (porque Alumno y Empresa dependen de User)
+        // 2) CentroEducativo
+        // 3) Tutor
+        // 4) Empresa (necesita users con role=empresa)
+        // 5) Alumno (necesita users con role=alumno y centros)
+        // 6) OfertaDePractica (necesita empresa)
+        // 7) Candidatura (necesita alumno, tutor y oferta)
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            UsersTableSeeder::class,
+            CentroEducativoTableSeeder::class,
+            TutorTableSeeder::class,
+            EmpresaTableSeeder::class,
+            AlumnoTableSeeder::class,
+            OfertaDePracticaTableSeeder::class,
+            CandidaturaTableSeeder::class,
         ]);
     }
 }
