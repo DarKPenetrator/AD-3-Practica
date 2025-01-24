@@ -12,7 +12,7 @@
 | **alumno**            | id, user_id, centro_educativo_id, carrera, año_graduacion | `BelongsTo(users)`, BelongsTo(centro_educativo), HasMany(postulacion), HasManyThrough(tutor, postulacion) |
 | **empresa**           | id, user_id, direccion, telefono, sector                 | BelongsTo(users), HasMany(oferta_de_practica) |
 | **oferta_de_practica**| id, empresa_id, puesto, duracion, requisitos             | BelongsTo(empresa), HasMany(postulacion)      |
-| **postulacion**       | id, alumno_id, oferta_de_practica_id, tutor_id, estado   | BelongsTo(alumno), BelongsTo(oferta_de_practica), BelongsTo(tutor) |
+| **candidatura**       | id, alumno_id, oferta_de_practica_id, tutor_id, estado   | BelongsTo(alumno), BelongsTo(oferta_de_practica), BelongsTo(tutor) |
 | **centro_educativo**  | id, nombre, direccion, telefono, email                   | HasMany(alumno)                               |
 | **tutor**             | id, nombre, email, telefono                              | HasMany(postulacion)                          |
 
