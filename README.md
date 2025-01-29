@@ -1,6 +1,21 @@
 Voy a hacer la practica de la unidad 3 que te pasare a continuacion. Vamos a por la maxima nota eh.
 para la base de datos utilizare un comando para abrir un contenedor de docker de mariadb y lo haremos en esa base de datos.
 tengo las tablas y las relaciones ya hechas te las paso 
+
+docker run --name mariadb_practicas -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=practicas -e MYSQL_USER=usuario -e MYSQL_PASSWORD=pepe123 -p 3306:3306 -d mariadb:latest
+
+
+docker exec -it mariadb_practicas mariadb -u usuario -p
+
+cp .env.example .env
+php artisan key:generate
+php artisan migrate:fresh
+php artisan db:seed
+php artisan serve
+
+netstat -ano | findstr 3306
+Stop-Process -Id NumeroID
+
 # AD-3-Practica
 
 
