@@ -1,34 +1,28 @@
 
 # AD Practica 3
-Se trata de un proyecto Laravel que utiliza Docker para desplegar un contenedor con MariaDB como base de datos. Además, emplea archivos `.env` para la configuración, migraciones y seeders para la generación de datos de prueba y un conjunto de endpoints en `api.php` que permiten las operaciones CRUD principales. La infraestructura busca ser fácilmente transportable y escalable, integrando Composer y el servidor de desarrollo de Laravel para un entorno de trabajo flexible y seguro.
+Se trata de un proyecto Laravel que utiliza Docker para desplegar un contenedor con MariaDB como base de datos.
 
-
-
-## 1. Descripción del problema
-
-
-
-[Tablas en detalle y explicadas](docs/Tablas.md)
 <br>
+
+
 ## 1. Descripción del problema
 
-La escuela “X” ha solicitado un sistema para gestionar el proceso de prácticas de sus alumnos. Se pretende centralizar la información de las empresas colaboradoras, las ofertas de prácticas, los tutores asignados y el historial de candidaturas. De este modo, cada alumno puede inscribirse en ofertas publicadas, mientras que las empresas pueden administrar sus vacantes y supervisar el estado de las candidaturas en tiempo real. Además, el sistema permitirá al centro educativo monitorizar el progreso académico y profesional, facilitando la coordinación con tutores y generando estadísticas sobre el éxito de las prácticas. Con ello, se busca agilizar la inserción laboral y mejorar la comunicación entre todos los actores involucrados. Asimismo, al ser una aplicación web, podrá expandirse a diferentes campus de la misma institución, permitiendo un crecimiento escalable que favorezca la colaboración entre sedes y empresas de forma integrada.
+El ayuntamiento de Alicante ha solicitado un sistema para gestionar el proceso de prácticas de los alumnos de su municipio. Se pretende centralizar la información de las empresas colaboradoras, las ofertas de prácticas, los tutores asignados y el historial de candidaturas.
+
+De este modo, cada alumno puede inscribirse en ofertas publicadas, mientras que las empresas pueden administrar sus vacantes y supervisar el estado de las candidaturas en tiempo real. Además, el sistema permitirá al centro educativo monitorizar el progreso académico y profesional, facilitando la coordinación con tutores y generando estadísticas sobre el éxito de las prácticas. 
+
+Con ello, se busca agilizar la inserción laboral y mejorar la comunicación entre todos los actores involucrados. Asimismo, al ser una aplicación web, podrá expandirse a diferentes campus de la misma institución, permitiendo un crecimiento escalable que favorezca la colaboración entre sedes y empresas de forma integrada.
 
 Este proyecto tiene un objetivo de bla bla   
-### Tabla General con Campos y Relaciones
-
-| Tabla                  | Relaciones                                     |
-|------------------------|----------------------------------------------------------|
-| **users**             | `HasOne(alumno)`, `HasOne(empresa)`               |
-| **alumno**            | `BelongsTo(users)`, `BelongsTo(centro_educativo)`, `HasMany(candidatura)`, `HasManyThrough(tutor, candidatura)` |
-| **empresa**           | `BelongsTo(users)`, `HasMany(oferta_de_practica)` |
-| **oferta_de_practica**| `BelongsTo(empresa)`, `HasMany(candidatura)`      |
-| **candidatura**       | `BelongsTo(alumno)`, `BelongsTo(oferta_de_practica)`, `BelongsTo(tutor)` |
-| **centro_educativo**  | `HasMany(alumno)`                               |
-| **tutor**             | `HasMany(candidatura)`                          |
 
 
----
+
+
+
+
+## 2. Modelo E-R
+
+![Imagen de Modelo E-R](docs/MER.jpg)
 
 ### Relación entre las tablas
 
@@ -58,16 +52,12 @@ Este proyecto tiene un objetivo de bla bla
 7. **Tabla `tutor`:**
    - Relación **HasMany** con `candidatura`.
 
-
-
-## 2. Modelo E-R
-
-![Imagen de Modelo E-R](docs/MER.jpg)
-
-
+[Tablas en detalle y explicadas](docs/Tablas.md)
 
 
 ## 3. Implementación
+
+
 
 
 
@@ -78,7 +68,7 @@ Este proyecto tiene un objetivo de bla bla
 5. **Colección Postman**: Documenta en carpetas (GET, POST, PUT, DELETE) cómo probar los endpoints con ejemplos claros.
 
 
-[La coleccion de postman con su informacion detallada](docs/Postman.md)
+[La coleccion de postman explicada de forma detallada](docs/Postman.md)
 
 [Coleccion de Postman ubicada en docs](docs/ADPractica3.postman_collection.json)
 
@@ -148,10 +138,11 @@ php artisan serve
 
   <summary>⚠¿Tienes un fallo? Haz clic aquí para ver la solución⚠</summary>
 
-   ---
-si el puerto esta ocupado se puede cambiar el puerto de escucha o detener el proceso que ocupa el puerto
-para detenerlo en windows 
+   --- 
 
+  ### Resolución de posibles conflictos
+
+  
   **Posibles soluciones:**
   - Asegúrate de haber instalado todas las dependencias con `composer install`.
   - Revisa que el archivo `.env` esté correctamente configurado. fijate que se vea algo asi:
@@ -166,7 +157,6 @@ DB_PASSWORD=pepe123
 ```
 
 
-  ### Resolución de posibles conflictos
 - Si el puerto 3306 está ocupado, puedes cambiarlo a `-p 3307:3306`, etc. O puedes detener el proceso en Windows
   Encuentra el id del proceso
 ```bash
