@@ -12,16 +12,16 @@ se trata de un proyecto laravel bla bla
 Este proyecto tiene un objetivo de bla bla   
 ### Tabla General con Campos y Relaciones
 
-
 | Tabla                  | Relaciones                                     |
 |------------------------|----------------------------------------------------------|
-| **users**             | HasOne(alumno), HasOne(empresa)               |
-| **alumno**            | `BelongsTo(users)`, BelongsTo(centro_educativo), HasMany(candidatura), HasManyThrough(tutor, candidatura) |
-| **empresa**           | BelongsTo(users), HasMany(oferta_de_practica) |
-| **oferta_de_practica**| BelongsTo(empresa), HasMany(candidatura)      |
-| **candidatura**       | BelongsTo(alumno), BelongsTo(oferta_de_practica), BelongsTo(tutor) |
-| **centro_educativo**  | HasMany(alumno)                               |
-| **tutor**             | HasMany(candidatura)                          |
+| **users**             | `HasOne(alumno)`, `HasOne(empresa)`               |
+| **alumno**            | `BelongsTo(users)`, `BelongsTo(centro_educativo)`, `HasMany(candidatura)`, `HasManyThrough(tutor, candidatura)` |
+| **empresa**           | `BelongsTo(users)`, `HasMany(oferta_de_practica)` |
+| **oferta_de_practica**| `BelongsTo(empresa)`, `HasMany(candidatura)`      |
+| **candidatura**       | `BelongsTo(alumno)`, `BelongsTo(oferta_de_practica)`, `BelongsTo(tutor)` |
+| **centro_educativo**  | `HasMany(alumno)`                               |
+| **tutor**             | `HasMany(candidatura)`                          |
+
 
 ---
 
@@ -65,7 +65,7 @@ Este proyecto tiene un objetivo de bla bla
 ## 3. Implementación
 
 
-
+[La coleccion de postman con su informacion detallada](docs/Postman.md)
 
 
 
