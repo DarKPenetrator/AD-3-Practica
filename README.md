@@ -70,16 +70,23 @@ Este proyecto tiene un objetivo de bla bla
 ## 3. Implementación
 
 
+
+1. **Migraciones**: Se han creado y versionado con Laravel las tablas (`users`, `alumno`, `empresa`, `oferta_de_practica`, `candidatura`, `centro_educativo`, `tutor`) y sus FKs.
+2. **Modelos y Relaciones**: Cada tabla cuenta con su modelo Eloquent y las relaciones definidas (1..1, 1..N, etc.).
+3. **Seeders**: Cargan datos de prueba coherentes en cada tabla, ejecutándose con `php artisan db:seed`.
+4. **Endpoints (API)**: Se exponen métodos **GET, POST, PUT, DELETE** en `routes/api.php`, cumpliendo con los requisitos CRUD.Con un total de 15.
+5. **Colección Postman**: Documenta en carpetas (GET, POST, PUT, DELETE) cómo probar los endpoints con ejemplos claros.
+
+
 [La coleccion de postman con su informacion detallada](docs/Postman.md)
 
+[Coleccion de Postman ubicada en docs](docs/ADPractica3.postman_collection.json)
 
 
 ## 4. WoW (Way of Working)
 
 
-
 A continuación se describe de forma resumida el proceso para poner en marcha la aplicación en un entorno Docker con MariaDB, así como algunos pasos fundamentales para la configuración de Laravel.
----
 
 ### Requisitos tecnológicos
 - **Docker** instalado para poder ejecutar contenedores.
