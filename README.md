@@ -8,10 +8,22 @@ docker run --name mariadb_practicas -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABAS
 docker exec -it mariadb_practicas mariadb -u usuario -p
 
 cp .env.example .env
+
+composer install
+
+
 php artisan key:generate
+
+
 php artisan migrate:fresh
+
+
 php artisan db:seed
+
+
 php artisan serve
+
+
 
 netstat -ano | findstr 3306
 Stop-Process -Id NumeroID
