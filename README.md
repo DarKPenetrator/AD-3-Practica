@@ -1,6 +1,10 @@
 
 # AD Practica 3
-se trata de un proyecto laravel bla bla 
+Se trata de un proyecto Laravel que utiliza Docker para desplegar un contenedor con MariaDB como base de datos. Además, emplea archivos `.env` para la configuración, migraciones y seeders para la generación de datos de prueba y un conjunto de endpoints en `api.php` que permiten las operaciones CRUD principales. La infraestructura busca ser fácilmente transportable y escalable, integrando Composer y el servidor de desarrollo de Laravel para un entorno de trabajo flexible y seguro.
+
+
+
+## 1. Descripción del problema
 
 
 
@@ -8,6 +12,7 @@ se trata de un proyecto laravel bla bla
 <br>
 ## 1. Descripción del problema
 
+La escuela “X” ha solicitado un sistema para gestionar el proceso de prácticas de sus alumnos. Se pretende centralizar la información de las empresas colaboradoras, las ofertas de prácticas, los tutores asignados y el historial de candidaturas. De este modo, cada alumno puede inscribirse en ofertas publicadas, mientras que las empresas pueden administrar sus vacantes y supervisar el estado de las candidaturas en tiempo real. Además, el sistema permitirá al centro educativo monitorizar el progreso académico y profesional, facilitando la coordinación con tutores y generando estadísticas sobre el éxito de las prácticas. Con ello, se busca agilizar la inserción laboral y mejorar la comunicación entre todos los actores involucrados. Asimismo, al ser una aplicación web, podrá expandirse a diferentes campus de la misma institución, permitiendo un crecimiento escalable que favorezca la colaboración entre sedes y empresas de forma integrada.
 
 Este proyecto tiene un objetivo de bla bla   
 ### Tabla General con Campos y Relaciones
@@ -70,26 +75,93 @@ Este proyecto tiene un objetivo de bla bla
 
 
 ## 4. WoW (Way of Working)
-Comandos para que funcione el proyecto 
 
 
+
+A continuación se describe de forma resumida el proceso para poner en marcha la aplicación en un entorno Docker con MariaDB, así como algunos pasos fundamentales para la configuración de Laravel.
+---
+
+### Requisitos tecnológicos
+- **Docker** instalado para poder ejecutar contenedores.
+- **PHP** (>= 8.x) y **Composer** para gestionar dependencias de Laravel.
+- **Laravel** (versión 9 o superior).
+
+
+## Pasos para levantar el proyecto
+
+1. **Arrancar contenedor de MariaDB**:
 
 ```bash
 docker run --name mariadb_practicas -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=practicas -e MYSQL_USER=usuario -e MYSQL_PASSWORD=pepe123 -p 3306:3306 -d mariadb:latest
-  ```
+```
+
+2. **Copiar archivo de entorno**:
+
+```bash
+cp .env.example .env
+```
+
+
+3. **Instalar dependencias**:
+
+```bash
+composer install
+```
+
+4. **Generar la key** de Laravel:
+
+```bash
+php artisan key:generate
+```
+
+5. **Ejecutar migraciones** para crear las tablas:
+
+```bash
+php artisan migrate
+```
+
+6. **Ejecutar seeders** (opcional, pero recomendable) para cargar datos de prueba:
+
+```bash
+php artisan db:seed
+```
+
+7. **Arrancar el servidor local**:
+
+```bash
+php artisan serve
+```
+
+
+
+
+
+
 <details>
 
-  <summary>⚠️ ¿Tienes un fallo? Haz clic aquí para ver la solución</summary>
+  <summary>⚠¿Tienes un fallo? Haz clic aquí para ver la solución⚠</summary>
 
    ---
 si el puerto esta ocupado se puede cambiar el puerto de escucha o detener el proceso que ocupa el puerto
 para detenerlo en windows 
 
   **Posibles soluciones:**
-  - Asegúrate de haber instalado todas las dependencias con `npm install`.
-  - Revisa que el archivo `.env` esté correctamente configurado.
-  - Reinicia el servidor con `npm run dev`.
-Encuentra el id del proceso
+  - Asegúrate de haber instalado todas las dependencias con `composer install`.
+  - Revisa que el archivo `.env` esté correctamente configurado. fijate que se vea algo asi:
+  
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=practicas
+DB_USERNAME=usuario
+DB_PASSWORD=pepe123
+```
+
+
+  ### Resolución de posibles conflictos
+- Si el puerto 3306 está ocupado, puedes cambiarlo a `-p 3307:3306`, etc. O puedes detener el proceso en Windows
+  Encuentra el id del proceso
 ```bash
 netstat -ano | findstr 3306
   ```
@@ -97,49 +169,12 @@ Detiene el proceso
 ```bash
 Stop-Process -Id NumeroID
   ```
+- Para Windows, desactiva antivirus o añade exclusiones si Composer falla.
+- Verifica las variables de entorno si la conexión a la base de datos no funciona.
+
   
  ---
- 
 </details>
-
-
-```bash
-docker exec -it mariadb_practicas mariadb -u usuario -p
-  ```
-
-```bash
-copy .env.example .env
-  ```
-
-
-
-```bash
-composer install
-  ```
-si win da fallos hay que desactivar opcion analisis en tiempo real de Windows Defender
-
-
-```bash
-php artisan key:generate
-  ```
-
-```bash
-
-php artisan migrate:fresh
-  ```
-```bash
-
-php artisan db:seed
-  ```
-```bash
-
-php artisan serve
-  ```
-
-
-
-
-
 
 
 
