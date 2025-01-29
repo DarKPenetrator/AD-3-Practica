@@ -52,54 +52,115 @@ Este proyecto tiene un objetivo de bla bla
 
 7. **Tabla `tutor`:**
    - Relación **HasMany** con `candidatura`.
-<br>
+
+
+
 ## 2. Modelo E-R
 
 ![Imagen de Modelo E-R](docs/imagen.png)
 
 [![Pepe estuvo aqui](https://mermaid.ink/img/pako:eNq1Vu1u2jAUfRUrUqVVajX1L_8ySDe0EVBwpm1Ciu7sS7GW2Jk_NlWlD7Nn2YvNIQHSNKi0dPkDubZzzrnxOfFdwBTHYBCgHgm40VAsJPFXOo-SObmrb6prHFMiOJl93JfmNBnH74mEAh8VsQCRP6qWYMxvpfl-IIrTCdEqbz2BjifRnIaTGWEawSLPwPaNupI_GL1fyPpP-CmdxNMnyFclZ1Bnvn7dqTOUVqsMuWNgxS_VndOoYaA1atjXv0ZhQkAKlflGcgdMKPlolcUcl0qqVxQcTWZJNA9fqLjhxYVGdiTjZsAgs0q_opDpdZTQMBtF2SwJh3Q8PEYTFqVGAwdklQ6NVQ9XcKc774ZGXyjR-NMJI6wynQGOhmlRdpacKnYYxqPxKKRpcoxKyF0hVd9uVUvUFjKOWellWcGgb5Z1_lV1Bzbu8_0BrjqSmSq8CUCLdjM82Ygska0gYyC58MJce_-f3pIopsk0i0bpMKTjz9MjA0gV3zW-xobupNbJemhKp8lJIvpz9D9kyNkZSTDf2ALNYFdLpc8MV-2Dykkcved1sxeJ2lqPvLkaXJ23Pxzr9eXler1N4gFZBB_ATCW-fYe5kjeGqkXQM38bZIcWtGnVIU12Id3wsyg9w8KxlTINUVPxi88PbLEN9F2H6gTk7WHoRn8XEAxp2eIBavP0Bqvt_GMAYdfoGrJ6xTvI2v7GhxQp9d8_mwBoQ2972mD3ROxxFGqc54jugXphA-r0arBL0F6j8D8E5VMcagc-Bza4CArU3nbcn4o21l0EdoX-jBNUazjoH9W0ez8PPKv5rWTBwGqHF4FW7mYVDJaQG39XW605Ve2qJchvSm3v7_8B9wPOLg?type=png)](https://mermaid.live/edit#pako:eNq1Vu1u2jAUfRUrUqVVajX1L_8ySDe0EVBwpm1Ciu7sS7GW2Jk_NlWlD7Nn2YvNIQHSNKi0dPkDubZzzrnxOfFdwBTHYBCgHgm40VAsJPFXOo-SObmrb6prHFMiOJl93JfmNBnH74mEAh8VsQCRP6qWYMxvpfl-IIrTCdEqbz2BjifRnIaTGWEawSLPwPaNupI_GL1fyPpP-CmdxNMnyFclZ1Bnvn7dqTOUVqsMuWNgxS_VndOoYaA1atjXv0ZhQkAKlflGcgdMKPlolcUcl0qqVxQcTWZJNA9fqLjhxYVGdiTjZsAgs0q_opDpdZTQMBtF2SwJh3Q8PEYTFqVGAwdklQ6NVQ9XcKc774ZGXyjR-NMJI6wynQGOhmlRdpacKnYYxqPxKKRpcoxKyF0hVd9uVUvUFjKOWellWcGgb5Z1_lV1Bzbu8_0BrjqSmSq8CUCLdjM82Ygska0gYyC58MJce_-f3pIopsk0i0bpMKTjz9MjA0gV3zW-xobupNbJemhKp8lJIvpz9D9kyNkZSTDf2ALNYFdLpc8MV-2Dykkcved1sxeJ2lqPvLkaXJ23Pxzr9eXler1N4gFZBB_ATCW-fYe5kjeGqkXQM38bZIcWtGnVIU12Id3wsyg9w8KxlTINUVPxi88PbLEN9F2H6gTk7WHoRn8XEAxp2eIBavP0Bqvt_GMAYdfoGrJ6xTvI2v7GhxQp9d8_mwBoQ2972mD3ROxxFGqc54jugXphA-r0arBL0F6j8D8E5VMcagc-Bza4CArU3nbcn4o21l0EdoX-jBNUazjoH9W0ez8PPKv5rWTBwGqHF4FW7mYVDJaQG39XW605Ve2qJchvSm3v7_8B9wPOLg)
 
-<br>
+
+
+
 ## 3. Implementación
 
 
 
-<br>
+
+
+
 ## 4. WoW (Way of Working)
 Comandos para que funcione el proyecto 
 
 
+
+```bash
 docker run --name mariadb_practicas -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=practicas -e MYSQL_USER=usuario -e MYSQL_PASSWORD=pepe123 -p 3306:3306 -d mariadb:latest
+  ```
+<details>
 
+  <summary>⚠️ ¿Tienes un fallo? Haz clic aquí para ver la solución</summary>
 
+   ---
 si el puerto esta ocupado se puede cambiar el puerto de escucha o detener el proceso que ocupa el puerto
 para detenerlo en windows 
 
+  **Posibles soluciones:**
+  - Asegúrate de haber instalado todas las dependencias con `npm install`.
+  - Revisa que el archivo `.env` esté correctamente configurado.
+  - Reinicia el servidor con `npm run dev`.
 Encuentra el id del proceso
+```bash
 netstat -ano | findstr 3306
-
+  ```
 Detiene el proceso
+```bash
 Stop-Process -Id NumeroID
+  ```
+  
+ ---
+ 
+</details>
 
 
-
+```bash
 docker exec -it mariadb_practicas mariadb -u usuario -p
+  ```
 
-cp .env.example .env
+```bash
+copy .env.example .env
+  ```
 
+
+
+```bash
 composer install
+  ```
 si win da fallos hay que desactivar opcion analisis en tiempo real de Windows Defender
 
 
+```bash
 php artisan key:generate
+  ```
 
+```bash
 
 php artisan migrate:fresh
-
+  ```
+```bash
 
 php artisan db:seed
-
+  ```
+```bash
 
 php artisan serve
+  ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
