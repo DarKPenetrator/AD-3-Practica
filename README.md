@@ -42,7 +42,7 @@ php artisan serve
 
 # AD-3-Practica
 
-[Tablas en detalle y explicadas](docs/guia.md)
+[Tablas en detalle y explicadas](docs/tablas.md)
 
 
 # Definición de Tablas y Relaciones
