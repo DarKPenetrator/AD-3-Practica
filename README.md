@@ -80,11 +80,12 @@ A continuación se describe de forma resumida el proceso para poner en marcha la
 
 ### Requisitos tecnológicos
 - **Docker** instalado para poder ejecutar contenedores.
-- **PHP** (>= 8.x) y **Composer** para gestionar dependencias de Laravel.
-- **Laravel** (versión 9 o superior).
+- **PHP** (8.x) se debe instalar sistema.
+-  **Composer** se utilizara para las dependecias.
 
 
-## Pasos para levantar el proyecto
+
+### Pasos para levantar el proyecto
 
 1. **Arrancar contenedor de MariaDB**:
 
