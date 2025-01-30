@@ -64,7 +64,7 @@ Con ello, se busca agilizar la inserción laboral y mejorar la comunicación ent
 1. **Migraciones**: Se han creado y versionado con Laravel las tablas (`users`, `alumno`, `empresa`, `oferta_de_practica`, `candidatura`, `centro_educativo`, `tutor`) y sus FKs.
 2. **Modelos y Relaciones**: Cada tabla cuenta con su modelo Eloquent y las relaciones definidas (1..1, 1..N, etc.).
 3. **Seeders**: Cargan datos de prueba coherentes en cada tabla, ejecutándose con `php artisan db:seed`.
-4. **Endpoints (API)**: Se exponen métodos **GET, POST, PUT, DELETE** en `routes/api.php`, cumpliendo con los requisitos CRUD.Con un total de 15.
+4. **Endpoints (API)**: Se exponen métodos **GET, POST, PUT, DELETE** en `routes/api.php`, cumpliendo con los requisitos CRUD. Con un total de 15.
 5. **Colección Postman**: Documenta en carpetas (GET, POST, PUT, DELETE) cómo probar los endpoints con ejemplos claros.
 
 
