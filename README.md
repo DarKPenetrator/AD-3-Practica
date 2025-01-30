@@ -13,7 +13,7 @@ De este modo, cada alumno puede inscribirse en ofertas publicadas, mientras que 
 
 Con ello, se busca agilizar la inserción laboral y mejorar la comunicación entre todos los actores involucrados. Asimismo, al ser una aplicación web, podrá expandirse a diferentes campus de la misma institución, permitiendo un crecimiento escalable que favorezca la colaboración entre sedes y empresas de forma integrada.
 
-Este proyecto tiene un objetivo de bla bla   
+
 
 
 
