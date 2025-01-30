@@ -159,6 +159,8 @@ DB_PASSWORD=pepe123
 
 
 - Si el puerto 3306 está ocupado, puedes cambiarlo a `-p 3307:3306`, etc. O puedes detener el proceso en Windows
+
+
   Encuentra el id del proceso
 ```bash
 netstat -ano | findstr 3306
