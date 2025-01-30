@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('empresa', function (Blueprint $table) {
             $table->id();
+            // Relación con users (FK)
             $table->unsignedBigInteger('user_id');
+
             $table->string('direccion');
             $table->string('telefono');
             $table->string('sector');
             $table->timestamps();
-        
+            
+            // Definimos las FKs
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

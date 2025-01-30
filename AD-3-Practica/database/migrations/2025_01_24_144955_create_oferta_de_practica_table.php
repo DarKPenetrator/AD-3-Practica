@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('oferta_de_practica', function (Blueprint $table) {
             $table->id();
+            // Relación con empresa (FK)
             $table->unsignedBigInteger('empresa_id');
+            
             $table->string('puesto');
             $table->integer('duracion')->nullable();
             $table->text('requisitos')->nullable();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         
+            // Definimos las FKs
             $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('cascade');
         });
         

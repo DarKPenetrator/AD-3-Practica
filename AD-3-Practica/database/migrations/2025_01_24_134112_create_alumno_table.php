@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             // Relación con users (FK)
             $table->unsignedBigInteger('user_id');
+            // Relación con centro_educativo (FK)
             $table->unsignedBigInteger('centro_educativo_id')->nullable();
+
             $table->string('carrera');
-            // year se puede hacer con integer o year. Muchas veces se pone integer
             $table->integer('año_graduacion')->nullable();
             $table->string('telefono')->nullable();
             $table->timestamps();
